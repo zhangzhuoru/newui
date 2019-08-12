@@ -34,7 +34,12 @@ import App from './App'
 import i18n from '@/i18n'
 import router from '@/router'
 import store from '@/store'
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts //将echarts注册成Vue的全局属性
 
+import ElementUI from  "element-ui";
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
 // Sync store with router
 sync(store, router)
 

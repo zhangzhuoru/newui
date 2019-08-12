@@ -6,8 +6,13 @@
     <v-layout
       justify-center
       align-center
+      wrap
     >
-      <v-flex xs12>
+      <v-flex        
+        md24
+        sm24
+        xs24
+        lg24>
         <material-card
           color="green"
           title="Material Dashboard Heading"
@@ -58,6 +63,63 @@
           </v-card-text>
         </material-card>
       </v-flex>
+      <v-flex 
+        md12
+        sm12
+        xs12
+        lg12>
+        <material-card
+          color="green"
+          title="element"
+        >
+          <el-table
+            :data="tableData"
+            style="width: 100%"
+            :default-sort = "{prop: 'date', order: 'descending'}"
+            >
+            <el-table-column
+              prop="date"
+              label="日期"
+              sortable
+              width="100"
+              align='center'>
+            </el-table-column>
+            <el-table-column
+              prop="name"
+              label="姓名"
+              sortable
+              align='center'
+              >
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top">
+                  <p>姓名: {{ scope.row.name }}</p>
+                  <p>住址: {{ scope.row.address }}</p>
+                  <div slot="reference" class="name-wrapper">
+                    <span>{{ scope.row.name }}</span>
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column
+              prop="address"
+              label="地址"
+              :formatter="formatter"
+              align='center'>
+            </el-table-column>
+            <el-table-column label="操作" width="180" align='center'>
+              <template slot-scope="scope">
+                <el-button
+                  size="mini"
+                  @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                <el-button
+                  size="mini"
+                  type="danger"
+                  @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+              </template>
+            </el-table-column>
+          </el-table>
+        </material-card>
+      </v-flex>
     </v-layout>
   </v-container>
 </template>
@@ -70,6 +132,23 @@ const small = 'Header with small subtitle'
 
 export default {
   data: () => ({
+    tableData: [{
+      date: '2016-05-02',
+      name: '王小虎',
+      address: '上海市普陀区金沙江路 1518 弄'
+    }, {
+      date: '2016-05-04',
+      name: '王小虎',
+      address: '上海市普陀区金沙江路 1517 弄'
+    }, {
+      date: '2016-05-01',
+      name: '王小虎',
+      address: '上海市普陀区金沙江路 1519 弄'
+    }, {
+      date: '2016-05-03',
+      name: '王小虎',
+      address: '上海市普陀区金沙江路 1516 弄'
+    }],
     typography: {
       'heading-1': ['Header 1', material, 'h1'],
       'heading-2': ['Header 2', material, 'h2'],
@@ -87,7 +166,18 @@ export default {
       'text-danger': ['Danger Text', leaderShort, 'p'],
       'small': ['Small Tag', small, 'h2']
     }
-  })
+  }),
+    methods: {
+      formatter(row, column) {
+        return row.address;
+      },
+      handleEdit(index, row) {
+        console.log(index, row);
+      },
+      handleDelete(index, row) {
+        console.log(index, row);
+      }
+    }
 }
 </script>
 
