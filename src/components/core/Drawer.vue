@@ -50,8 +50,10 @@
           :active-class="color"
           avatar
           class="v-list-item"
+          v-if='link.icon'
         >
-          <v-list-tile-action>
+          <v-list-tile-action
+          >
             <v-icon>{{ link.icon }}</v-icon>
           </v-list-tile-action>
           <v-list-tile-title
@@ -74,43 +76,7 @@ import {
 export default {
   data: () => ({
     logo: './img/vuetifylogo.png',
-    links: [
-      {
-        to: '/dashboard',
-        icon: 'mdi-view-dashboard',
-        text: 'Dashboard'
-      },
-      {
-        to: '/user-profile',
-        icon: 'mdi-account',
-        text: 'User Profile'
-      },
-      {
-        to: '/table-list',
-        icon: 'mdi-clipboard-outline',
-        text: 'Table List'
-      },
-      {
-        to: '/typography',
-        icon: 'mdi-format-font',
-        text: 'Typography'
-      },
-      {
-        to: '/icons',
-        icon: 'mdi-chart-bubble',
-        text: 'Icons'
-      },
-      {
-        to: '/maps',
-        icon: 'mdi-map-marker',
-        text: 'Maps'
-      },
-      {
-        to: '/notifications',
-        icon: 'mdi-bell',
-        text: 'Notifications'
-      }
-    ],
+    links:[],
     responsive: false
   }),
   computed: {
@@ -131,6 +97,7 @@ export default {
     }
   },
   mounted () {
+    this.links = this.$store.state.links
     this.onResponsiveInverted()
     window.addEventListener('resize', this.onResponsiveInverted)
   },

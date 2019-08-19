@@ -103,12 +103,23 @@ export default {
     ],
     title: null,
     responsive: false,
-    responsiveInput: false
+    responsiveInput: false,
+
   }),
 
   watch: {
     '$route' (val) {
-      this.title = val.name
+      let links = this.$store.state.links
+      let titles = links.filter(item => item.to==val.path )
+      // 子路由
+      if (titles.length==0){
+        titles = links.filter(item => item.to2==val.path )
+        this.title = titles[0].text2
+      }
+      // 主路由
+      else {
+        this.title = titles[0].text
+      }
     }
   },
 

@@ -142,7 +142,7 @@
           </v-card>
         </v-hover>
       </v-flex>
-            <v-flex
+      <v-flex
         md12
         sm12
         lg4

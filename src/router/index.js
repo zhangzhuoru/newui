@@ -16,6 +16,7 @@ import Meta from 'vue-meta'
 import paths from './paths'
 
 function route (path, view, name) {
+
   return {
     name: name || view,
     path,

@@ -3,11 +3,14 @@
  * for more information on routes, see the
  * official documentation https://router.vuejs.org/en/
  */
+ import Dashboard from '@/views/Dashboard.vue'
 export default [
   {
     path: '/dashboard',
     // Relative to /src/views
-    view: 'Dashboard'
+    view: 'Dashboard',
+    hash:'11',
+    component:Dashboard
   },
   {
     path: '/user-profile',
@@ -30,6 +33,11 @@ export default [
   {
     path: '/maps',
     view: 'Maps'
+  },
+  {
+    path: '/pinfo',
+    name: 'Pinfo',
+    view: 'Pinfo'
   },
   {
     path: '/notifications',
