@@ -8,3 +8,6 @@ export const getimages = params => axios.get( '/getimages/'+params);
 export const getimageinfo = params => axios.get( '/getimageInfo/'+params);
 export const getthumbImg = params => axios.get( '/getthumimages/'+params);
 export const getgoods = params => axios.get( '/getgoods?pageindex='+params);
+export const getgoodsdesc = params => axios.get( '/goods/getinfo/'+params);
+export const getmoreimgs = params => axios.get( '/getthumimages/'+params);
+export const getsjdesc = params => axios.get( '/goods/getdesc/'+params);

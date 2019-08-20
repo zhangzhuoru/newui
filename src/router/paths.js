@@ -40,6 +40,11 @@ export default [
     view: 'Pinfo'
   },
   {
+    path: '/pinsjfo',
+    name: 'Pinsjfo',
+    view: 'Pinsjfo'
+  },
+  {
     path: '/notifications',
     view: 'Notifications'
   },

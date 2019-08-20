@@ -115,6 +115,7 @@ export default {
       if (titles.length==0){
         titles = links.filter(item => item.to2==val.path )
         this.title = titles[0].text2
+        console.log('titles',titles);
       }
       // 主路由
       else {

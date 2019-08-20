@@ -1,5 +1,5 @@
 // https://vuex.vuejs.org/en/state.html
-
+let car = window.JSON.parse(localStorage.getItem('cart')||'[]')
 export default {
   //
   links: [
@@ -41,17 +41,21 @@ export default {
       //子路由，非主路由
       {
 	    to2: '/pinfo',
-	    text2: '新闻详情'
+	    text2: '新闻详情',
+	    name:'Pinfo'
 	  },
 	  {
-	    to2: '/pinfo',
-	    text2: '商品'
+	    to2: '/pinsjfo',
+	    text2: '商品',
+	    name:'Pinsjfo'
 	  },
 	  {
-	    to2: '/pinfo',
+	    to2: '/pingwcfo',
 	    text2: '商品详情'
 	  },
 
 
     ],
+    cart:car
+
 }

@@ -11,187 +11,49 @@
         xs12
         md8
       >
-        <material-card
-          color="green"
-          title="Edit Profile"
-          text="Complete your profile"
-        >
-          <v-form>
-            <v-container py-0>
-              <v-layout wrap>
-                <v-flex
-                  xs12
-                  md4
-                >
-                  <v-text-field
-                    label="Company (disabled)"
-                    disabled/>
-                </v-flex>
-                <v-flex
-                  xs12
-                  md4
-                >
-                  <v-text-field
-                    class="purple-input"
-                    label="User Name"
-                  />
-                </v-flex>
-                <v-flex
-                  xs12
-                  md4
-                >
-                  <v-text-field
-                    label="Email Address"
-                    class="purple-input"/>
-                </v-flex>
-                <v-flex
-                  xs12
-                  md6
-                >
-                  <v-text-field
-                    label="First Name"
-                    class="purple-input"/>
-                </v-flex>
-                <v-flex
-                  xs12
-                  md6
-                >
-                  <v-text-field
-                    label="Last Name"
-                    class="purple-input"/>
-                </v-flex>
-                <v-flex
-                  xs12
-                  md12
-                >
-                  <v-text-field
-                    label="Adress"
-                    class="purple-input"/>
-                </v-flex>
-                <v-flex
-                  xs12
-                  md4>
-                  <v-text-field
-                    label="City"
-                    class="purple-input"/>
-                </v-flex>
-                <v-flex
-                  xs12
-                  md4>
-                  <v-text-field
-                    label="Country"
-                    class="purple-input"/>
-                </v-flex>
-                <v-flex
-                  xs12
-                  md4>
-                  <v-text-field
-                    class="purple-input"
-                    label="Postal Code"
-                    type="number"/>
-                </v-flex>
-                <v-flex xs12>
-                  <v-textarea
-                    class="purple-input"
-                    label="About Me"
-                    value="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                  />
-                </v-flex>
-                <v-flex
-                  xs12
-                  text-xs-right
-                >
-                  <v-btn
-                    class="mx-0 font-weight-light"
-                    color="success"
-                  >
-                    Update Profile
-                  </v-btn>
-                </v-flex>
-              </v-layout>
-            </v-container>
-          </v-form>
-        </material-card>
+       <el-tabs type="border-card">
+            <el-tab-pane>
+              <span slot="label"><i class="el-icon-date"></i> 课程章节目录</span>
+              <div class="yijitimu" v-for='items in list'>
+                <p>{{items.label}}</p>
+                <div class="erjitimu" v-for='item in items.children'>
+                  <p>{{item.label}}</p>
+                </div>
+              </div>
+            </el-tab-pane>
+            <el-tab-pane label="课程软件资源">课程软件资源</el-tab-pane>
+            <el-tab-pane label="课程共享资源">课程共享资源</el-tab-pane>
+          </el-tabs>
+
       </v-flex>
       <v-flex
         xs12
         md4
       >
         <material-card class="v-card-profile">
-          <v-avatar
-            slot="offset"
-            class="mx-auto d-block"
-            size="130"
-          >
             <img
               src="https://demos.creative-tim.com/vue-material-dashboard/img/marc.aba54d65.jpg"
+              style='width:100%;'
             >
-          </v-avatar>
+
           <v-card-text class="text-xs-center">
-            <h6 class="category text-gray font-weight-thin mb-3">CEO / CO-FOUNDER</h6>
             <h4 class="card-title font-weight-light">Alec Thompson</h4>
             <p class="card-description font-weight-light">Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...</p>
-            <v-btn
-              color="success"
-              round
+            <div class="butbox">
+              <v-btn
+              color="primary"
               class="font-weight-light"
-            >Follow</v-btn>
+              >进入课程</v-btn>
+              <v-btn
+                color="warning"
+                class="font-weight-light"
+              >退出课程</v-btn>
+            </div>
+
           </v-card-text>
         </material-card>
       </v-flex>
-      <v-flex
-        xs12
-        md12
-        lg3
-        v-for='item in goodlist'
-        :key='item.id'
-      >
-      <v-hover v-slot:default="{ hover }"  
-         
-                >
-          <v-card
-            class="mx-auto"
-            color="grey lighten-4"
-            max-width="600"
 
-          >
-            <v-img
-              :aspect-ratio="9/16"
-              :src="item.img_url"
-            >
-              <v-expand-transition>
-                <div
-                  v-if="hover"
-                  class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
-                  style="height: 100%;"
-                >
-                  ￥{{item.sell_price}}
-                </div>
-              </v-expand-transition>
-            </v-img>
-            <v-card-text
-              class="pt-6"
-              style="position: relative;"
-            >
-              <v-btn
-                absolute
-                color="orange"
-                class="white--text"
-                fab
-                large
-                right
-                top
-              >
-                <v-icon>mdi-cart</v-icon>
-              </v-btn>
-              <div class="font-weight-light grey--text title mb-2">￥{{item.title}}</div>
-              <div class="font-weight-light title mb-2">
-                
-              </div>
-            </v-card-text>
-          </v-card>
-        </v-hover>
-      </v-flex>
       <v-flex
         xs12
         md12
@@ -199,9 +61,12 @@
         <div class="gwcbox">
           <div class="list"
             v-for='items in goodlist'
-            :key='items.id'>
+            :key='items.id'
+            @click='gogoodsinfo(items.id)'>
             <div class="imgbox">
-              <img :src="items.img_url" alt="">
+              <img :src="items.img_url" alt=""
+                :onerror="img404"
+              >
             </div>
             <div class="jiage">
               <span>￥</span><span class='oldprice'>{{items.market_price}}</span>
@@ -214,50 +79,119 @@
           </div>
         </div>
       </v-flex>
+      <v-flex
+        xs12
+        md12
+        lg12>
+        <el-col :span="6">
+          <div class="imgbox"><img src="https://img.mukewang.com/5d410c6509a237dd06000338-240-135.jpg" alt="图片"></div>
+        </el-col>
+        <el-col :span="18" style='padding-left:32px;'>
+          <div class="sptitle">
+            Android事件分发机制
+          </div>
+          <div class="diehang">
+            <span class='sp1'>已学0%</span>
+            <span>用时 0分</span>
+            <span>学习至1-1 什么是事件分发</span>
+          </div>
+          <div class="disanhang">
+            <el-button type="danger" round>学习</el-button>
+          </div>
+        </el-col>
+      </v-flex>
+      
+      <div class="logoout" @click="getmore">
+        <img src="../../public/img/add.png" alt>
+      </div>
+
     </v-layout>
     
   </v-container>
 </template>
 
 <script>
-// @ is an alias to /src
+  // @ is an alias to /src
 
 
-import Api from '@/api/index.js'
-export default {
-    name: 'Pinfo',
-    data() {
-        return {
-            id:0,
-            page:1,
-            goodlist:[],
-            pinfo:{}
-        };
-    },
-    // uname:'joker',
-    // password:'xiongwujun'
-    created(){
-        this.getgoods()
-    },
-    methods: {
-      getgoods() {
-          Api.getgoods(this.page).then((res)=>{
-            if(res.status==200){
-              this.goodlist = res.data.message
-            }
-                console.log('22',this.goodlist);
-            }, err => {
-                alert('response.data', err)
-            });
+  import Api from '@/api/index.js'
+  export default {
+      name: 'Pinfo',
+      data() {
+          return {
+              id:0,
+              page:1,
+              goodlist:[],
+              pinfo:{},
+              isloaded:false,
+              img404: "this.src='http://demo.dtcms.net/upload/201504/20/thumb_201504200119256512.jpg'",
+              list:[{
+          label: '一级 1',
+          children: [{
+            label: '二级 1-1',
+          }]
+        }, {
+          label: '一级 2',
+          children: [{
+            label: '二级 2-1',
+          }, {
+            label: '二级 2-2',
+          }]
+        }, {
+          label: '一级 3',
+          children: [{
+            label: '二级 3-1',
+          }, {
+            label: '二级 3-2',
+          }]
+        }],
+        defaultProps: {
+          children: 'children',
+          label: 'label'
+        }
+          };
       },
-      getmore(){
-        this.page++;
-        this.getgoods();
-      }
-      
-    }
+      // uname:'joker',
+      // password:'xiongwujun'
+      created(){
+          this.getgoods()
+      },
+      methods: {
+        getgoods() {
+            Api.getgoods(this.page).then((res)=>{
+              if(res.status==200){
+                if(res.data.message.length<=0){
+                  this.isloaded = true
+                }
+                this.goodlist = this.goodlist.concat(res.data.message)
+              }
+                  console.log('22',this.goodlist);
+              }, err => {
+                  alert('response.data', err)
+              });
+        },
+        getmore(){
+          if(this.isloaded) return
+          this.page++;
+          this.getgoods();
+        },
+        gogoodsinfo(id){
+        this.$router.push({
+            name:'Pinsjfo',
+            query:{
+              sjid:id
+            }
+          })
+        },
+        handleNodeClick(data) {
+          console.log(data);
+        }
 
-}
+
+        
+      }
+
+  }
 </script>
 <style>
   .gwcbox{
@@ -275,17 +209,7 @@ export default {
 .list:not(:nth-child(4n)) {
     margin-right: calc(4% / 3);
 }
-.imgbox{
-  width: 100%;
-  padding: 5px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.imgbox img{
-  width:100%;
-  height:auto;
-}
+
 .jiage{
   display: flex;
   align-items:flex-end;
@@ -318,8 +242,42 @@ export default {
 }
 .title{
   display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.imgbox{
+  width: 100%;
+  padding: 5px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.imgbox img{
+  width:100%;
+  height:auto;
+}
+.sptitle{
+  margin-top: 15px;
+  color: #1c1f21;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 36px;
+}
+.diehang span{
+  margin-right: 14px;
+  line-height: 24px;
+  font-size: 14px;
+  color: #787d82;
+}
+.diehang .sp1{
+  color: #f01400;
+
+}
+.disanhang{
+  margin-top: 12px;
+}
+.erjitimu{
+  padding-left: 20px;
 }
 </style>
